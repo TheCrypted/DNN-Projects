@@ -5,6 +5,7 @@ import re
 poker_hands = ["High Card", "One Pair", "Two Pair", "Three of a Kind", "Straight", "Flush", "Full House", "Four of a Kind", "EMPTY FOR EASE", "Straight Flush", "Royal Flush"]
 poker_card_indices = {'Q': 12, 'K': 13, 'A': 14, 'J': 11}
 
+
 def detect_hand(cards):
     hand_strength = 0
     card_count = {}
