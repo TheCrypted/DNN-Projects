@@ -40,8 +40,7 @@ def detect_hand(cards):
         if card_arr[-1] == 14:
             hand_strength += 1
         hand_strength += 4
-    print(poker_hands[hand_strength], hand_strength, suite_count)
-    return hand_strength
+    return poker_hands[hand_strength]
 
 
 if __name__ == "__main__":
