@@ -1,0 +1,5 @@
+path: C:\Users\Aman's Laptop\Documents\DNNProjects\AirHockey_v2\Dataset
+train: ../train/images
+val: ../test/images
+
+names: ["hand"]
