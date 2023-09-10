@@ -37,14 +37,15 @@ def iou_box_filtering(boxes, threshold=0.7):
     for i, box in enumerate(sorted_boxes):
         if i in removal_idc:
             continue
-        for j, other_box in enumerate(sorted_boxes[i:]):
-            if i == j:
+        for j, other_box in enumerate(sorted_boxes):
+            if i >= j:
                 continue
             iou = iou_calc(box, other_box)
-            print(iou)
+            # print(iou, i, j)
             if iou > threshold and j not in removal_idc:
                 removal_idc.append(j)
-    return removal_idc, sorted_boxes
+                # print("appended: ", j)
+    return [x for i, x in enumerate(sorted_boxes) if i not in removal_idc]
 
 
 def main():
@@ -55,5 +56,3 @@ def main():
     boxes = [box1, box2, box3, box4]
     print(iou_box_filtering(boxes, threshold=0.1))
 
-
-main()
