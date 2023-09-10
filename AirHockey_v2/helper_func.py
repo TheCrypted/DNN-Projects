@@ -3,6 +3,20 @@ import copy
 import cv2
 
 
+def display_text_dynamic(text, frame, position, height):
+    x, y = position
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_color = (255, 255, 255)  # White color
+    font_thickness = 2
+    text_size, _ = cv2.getTextSize(text, font, 1, font_thickness)
+    text_width, text_height = text_size
+    font_scale = height/text_height
+    text_dim, _ = cv2.getTextSize(text, font, font_scale, font_thickness)
+    text_width, text_height = text_dim
+    cv2.rectangle(frame, (x, y), ((x + 20 + text_width), y + height + 20), (0, 0, 0), thickness=cv2.FILLED)
+    cv2.putText(frame, text, (x + 10, y+text_height+10), font, font_scale, font_color, font_thickness)
+
+
 def display_text(text, frame, position):
     x, y = position
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -32,7 +46,6 @@ def iou_calc(box_dim_a, box_dim_b):
 
 def iou_box_filtering(boxes, threshold=0.7):
     sorted_boxes = sorted(boxes, key=lambda x: x[4], reverse=True)
-    sorted_copy = copy.deepcopy(sorted_boxes)
     removal_idc = []
     for i, box in enumerate(sorted_boxes):
         if i in removal_idc:
